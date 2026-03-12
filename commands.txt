@@ -1,0 +1,35 @@
+ls ->to list
+ls -a ->to list all the files which are in the hidden
+pwd -> to check or see the current workin directories
+ls -l -> list more info
+ls -r ->to list all the files in the sub directories
+cat file_name ->to list the content whats in the file
+echo -> prints what we write in quotes
+cat lower.txt | tr a-z A-Z > upper.txt -> lower to upper case
+mkdir file_name -> create file
+mkdir file_name/hello ->inside file_name hello directory will be created
+touch file.txt ->creates a text document file 
+start file.txt ->to open the file
+cp file.txt file1.txt -> copies content from file.txt and paste in file1.txt
+mv file.txt folder_name ->moving file.txt from one folder to another
+sudo useradd user_name ->creates a user
+id shiek ->to see the user id ,group id and shows groups
+sudo useradd -g group_name ->to see a specify a group
+sudo groupadd group_name ->creates a group
+grep "group_name" /etc/group -> to check is that particular group exist
+groups user_name -> to see the user belongs to which group
+sudo usermod -G group_name user_name ->to modify the users groupname like adding a secondary group
+sudo usermod -g group_name user_name ->to modify the default groupname itself
+sudo su - -> to switch user to root user
+sudo userdel user_name -> deletes the user not the data
+sudo userdel -r -> it will delete the user along with the data
+sudo userdel -f -> it will delete the user when user is logged in
+sudo usermod -p -> to change the pass
+sudo usermod -s -> to change the shell type
+sudo usermod -L user_name -> to lock a user
+sudo usermod -U user_name -> to unlock a user 
+whoami -> to verify the user
+sudo su - user_name -> to switch the user 
+sudo passwd user_name -> to set a pass for that user
+/etc/passwd -> we can see the user that we created
+/etc/shadow -> it contains pass encrypted
