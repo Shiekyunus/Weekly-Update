@@ -33,3 +33,9 @@ sudo su - user_name -> to switch the user
 sudo passwd user_name -> to set a pass for that user
 /etc/passwd -> we can see the user that we created
 /etc/shadow -> it contains pass encrypted
+ps -> to check the list of runnin processes currently
+ps aux -> to see all the processes running
+ps aux | wc -l -> word count of the running processes if there are 2000 lines are shown  while ps aux then there are 2000 processes are running
+ps aux | nl -> list all the running process with line number 
+ps -ef -> its same as ps aux but one thing it shows extra that is memory utilization
+
