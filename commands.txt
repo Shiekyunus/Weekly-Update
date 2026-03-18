@@ -59,8 +59,6 @@ free -h -> to display the amount of free and used memory in the system in human-
 uptime -> to show how long the system has been running and the load average
 lsof -> to list all open files and the processes that opened them
 lsof -p PID -> to list open files for a specific process
-strace -p PID -> to trace system calls and signals for a running process
-/proc/PID/status -> to view detailed information about a specific process (replace PID with actual process id)
 
 # ---- Signals & Job Control ----
 kill -l -> to list all available signals
@@ -72,10 +70,6 @@ Ctrl + Z -> to suspend a foreground process and send it to the background
 Ctrl + C -> to terminate a running foreground process
 Ctrl + D -> to send end-of-file signal and exit the shell
 jobs -> to list all jobs running in the background or stopped
-bg %job_number -> to resume a stopped job in the background
-fg %job_number -> to bring a background job to the foreground
-& -> to run a command in the background (e.g., sleep 100 &)
-nohup command & -> to run a command that continues even after logout
 wait PID -> to wait for a process to finish before continuing
 
 # ---- Packages ----
@@ -88,16 +82,12 @@ apt purge package_name -> to remove a package along with its config files
 apt search package_name -> to search for a package in the repositories
 apt show package_name -> to show details about a package
 apt list --installed -> to list all installed packages
-dpkg -i package.deb -> to manually install a .deb package file
-dpkg -l -> to list all installed packages using dpkg
 yum -> package manager for CentOS/RHEL based systems
 yum install package_name -> to install a package on CentOS/RHEL
 yum remove package_name -> to remove a package on CentOS/RHEL
 yum update -> to update all packages on CentOS/RHEL
 yum search package_name -> to search for a package in CentOS/RHEL repositories
 yum list installed -> to list all installed packages on CentOS/RHEL
-rpm -ivh package.rpm -> to manually install a .rpm package file
-rpm -qa -> to list all installed rpm packages
 which command_name -> to find the location of a command/program
 whereis command_name -> to find the binary, source and manual page for a command
 
@@ -115,13 +105,7 @@ service service_name start -> SysV style command to start a service (older syste
 service service_name stop -> SysV style command to stop a service (older systems)
 service service_name status -> SysV style command to check service status (older systems)
 /etc/init.d/ -> directory where SysV init scripts are stored
-chkconfig service_name on -> to enable a service at boot in SysV/Upstart (CentOS)
-chkconfig --list -> to list all services and their run level status (SysV)
 upstart -> event-based init system used in older Ubuntu versions
-initctl list -> to list all Upstart jobs and their status
-runlevel -> to display the current and previous runlevel of the system
-systemd-analyze -> to check the time taken by systemd to boot the system
-systemd-analyze blame -> to list services and time each took to start during boot
 
 # ---- Logging ----
 /var/log/ -> main directory where all system log files are stored
@@ -142,15 +126,8 @@ tail -n 50 /var/log/syslog -> to view the last 50 lines of a log file
 head /var/log/syslog -> to view the first 10 lines of a log file
 grep "error" /var/log/syslog -> to search for a specific keyword in a log file
 journalctl -> to view logs collected by systemd's journal
-journalctl -u service_name -> to view logs for a specific service
-journalctl -f -> to follow/monitor journal logs in real time
-journalctl --since "1 hour ago" -> to view logs from the last 1 hour
-journalctl --since "2024-01-01" --until "2024-01-02" -> to view logs between specific dates
-dmesg -> to display kernel ring buffer messages (useful for hardware issues)
-dmesg | grep -i error -> to filter kernel messages for errors
-logger "custom message" -> to write a custom message to the system log
+logger "message" -> to write a custom message to the system log
 logrotate -> utility to manage and rotate log files automatically
-/etc/logrotate.conf -> main configuration file for logrotate
 
 # ---- Cron Jobs ----
 crontab -e -> to edit the cron jobs for the current user
@@ -171,9 +148,6 @@ example: 0 9 * * 1 /script.sh -> runs script.sh every Monday at 9:00 AM
 systemctl status cron -> to check if the cron service is running (Ubuntu)
 systemctl start cron -> to start the cron service
 systemctl enable cron -> to enable cron to start at boot
-at time -> to schedule a one-time task at a specific time (e.g., at 5pm)
-atq -> to list pending at jobs
-atrm job_number -> to remove a scheduled at job
 
 # ---- File Permissions ----
 ls -l -> to view file permissions in long format
@@ -183,30 +157,10 @@ chmod 644 file_name -> owner has read and write, group and others have read only
 chmod u+x file_name -> to add execute permission for the owner (user)
 chmod g-w file_name -> to remove write permission from the group
 chmod o+r file_name -> to add read permission for others
-chmod -R 755 folder_name -> to apply permissions recursively to all files in a directory
 chown user_name file_name -> to change the owner of a file
 chown user_name:group_name file_name -> to change both owner and group of a file
-chown -R user_name folder_name -> to change owner recursively for all files in a directory
 chgrp group_name file_name -> to change the group ownership of a file
-umask -> to display or set the default permission mask for new files
 
-# ---- Networking Commands ----
-ifconfig -> to display network interface configuration (older systems)
-ip a -> to display all network interfaces and their IP addresses (modern)
-ip r -> to display the routing table
-ping host_name_or_ip -> to test network connectivity to a host
-ping -c 4 google.com -> to send exactly 4 ping packets
-traceroute host_name -> to trace the route packets take to a destination
-netstat -tuln -> to list all listening ports and their services
-ss -tuln -> modern alternative to netstat for listing open ports
-curl url -> to transfer data from or to a server (useful for testing APIs)
-wget url -> to download files from the internet
-scp file.txt user@remote_ip:/path/ -> to securely copy a file to a remote server
-ssh user@remote_ip -> to connect to a remote server via SSH
-nslookup domain_name -> to query DNS records for a domain
-dig domain_name -> to get detailed DNS information for a domain
-hostname -> to display the hostname of the system
-hostname -I -> to display the IP address of the system
 
 # ---- Disk Usage ----
 df -h -> to display disk space usage of all mounted filesystems in human-readable format
@@ -216,7 +170,7 @@ lsblk -> to list all block devices (disks and partitions)
 fdisk -l -> to list all disk partitions
 mount -> to display all currently mounted filesystems
 mount /dev/sdb1 /mnt -> to mount a partition to a directory
-umount /mnt -> to unmount a filesystem
+
 
 # ---- Searching & Text Processing ----
 grep "keyword" file_name -> to search for a keyword in a file
@@ -226,11 +180,8 @@ grep -n "keyword" file_name -> to show line numbers with matching lines
 find / -name file_name -> to search for a file by name starting from root
 find . -name "*.txt" -> to find all .txt files in the current directory
 find / -type d -name folder_name -> to search for a directory by name
-sed 's/old/new/g' file_name -> to replace all occurrences of 'old' with 'new' in a file
-awk '{print $1}' file_name -> to print the first column of a file
 sort file_name -> to sort lines of a file alphabetically
 sort -r file_name -> to sort lines in reverse order
-uniq file_name -> to remove duplicate consecutive lines from a file
 wc -l file_name -> to count the number of lines in a file
 wc -w file_name -> to count the number of words in a file
 cut -d',' -f1 file.csv -> to extract the first field from a comma-separated file
